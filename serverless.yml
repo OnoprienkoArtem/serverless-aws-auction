@@ -11,7 +11,12 @@ provider:
   stage: ${opt:stage, 'dev'}
   region: eu-west-1
   profile: personalAccount
-
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/AuctionsTable
 resources:
   Resources:
     AuctionsTable:
